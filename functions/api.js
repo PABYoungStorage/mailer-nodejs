@@ -3,16 +3,15 @@ const serverless = require("serverless-http");
 const nodemailer = require("nodemailer");
 const bodyParser = require("body-parser");
 const path = require("path");
-const cors = require('cors');
+const cors = require("cors");
 const app = express();
 const router = express.Router();
-
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-app.use(express.static('public'));
+app.use(express.static("public"));
 let records = [];
 
 //Get all students
@@ -85,11 +84,11 @@ router.get("/email", (req, res) => {
         res.status(500).send("Error sending email");
       } else {
         console.log("Message sent: %s", info.messageId);
-        res.status(200).send("Email sent successfully");
+        res.status(200).json({ message: "Email sent successfully" });
       }
     });
   } else {
-    res.status(200).send("Please Enter the parameter values");
+    res.status(200).json({ message: "Please Enter the parameter values" });
   }
 });
 
