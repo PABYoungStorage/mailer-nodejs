@@ -70,10 +70,10 @@ router.get("/email", (req, res) => {
       from: from,
       to: from,
       subject: "Client request from the website",
-      html: `<h2>Name:</h2>${name}<br>
-      <h2>Email:</h2>${email}<br>
-      <h2>Number:</h2>${number}<br>
-      <h2>Message:</h2>${message}<br>`,
+      html: `<h2>Name:${name}</h2>
+      <h2>Email:${email}</h2>
+      <h2>Number:${number}</h2>
+      <h2>Message:${message}</h2>`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
