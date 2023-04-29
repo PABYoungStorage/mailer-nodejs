@@ -57,20 +57,23 @@ router.get("/email", (req, res) => {
     });
 
     // Load the HTML email template from the public folder
-    const templatePath = path.join(__dirname, "public", "email-template.html");
-    const emailTemplate = require("fs").readFileSync(templatePath, "utf-8");
+    // const templatePath = path.join(__dirname, "public", "email-template.html");
+    // const emailTemplate = require("fs").readFileSync(templatePath, "utf-8");
 
     // Replace template placeholders with actual values
-    let html = emailTemplate.replace("%NAME%", name);
-    html = html.replace("%EMAIL%", email);
-    html = html.replace("%NUMBER%", number);
-    html = html.replace("%MESSAGE%", message);
+    // let html = emailTemplate.replace("%NAME%", name);
+    // html = html.replace("%EMAIL%", email);
+    // html = html.replace("%NUMBER%", number);
+    // html = html.replace("%MESSAGE%", message);
 
     let mailOptions = {
       from: from,
       to: from,
       subject: "Client request from the website",
-      html: html,
+      html: `<h2>Name:</h2>${name}<br>
+      <h2>Email:</h2>${email}<br>
+      <h2>Number:</h2>${number}<br>
+      <h2>Message:</h2>${message}<br>`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
